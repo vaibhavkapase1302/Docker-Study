@@ -5,7 +5,8 @@
 
 ### Dockerfile
 
-```Dockerfile FROM node:12.2.0-alpine
+```Dockerfile
+FROM node:12.2.0-alpine
 WORKDIR app
 COPY . .
 RUN npm install
@@ -69,7 +70,8 @@ CMD ["java", "Hello"]
 
 #### ////////////////////////// Dockerfile-3 ///////////////////////
 
-```Dockerfile FROM python:3.12.0b4-slim-bullseye
+```Dockerfile
+FROM python:3.12.0b4-slim-bullseye
 
 WORKDIR /app
 
