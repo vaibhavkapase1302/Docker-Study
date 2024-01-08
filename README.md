@@ -11,7 +11,8 @@ COPY . .
 RUN npm install
 RUN npm run test
 EXPOSE 8000
-CMD ["node","app.js"]```
+CMD ["node","app.js"]
+```
 
 
 #### ///////////////// Dockerfile-1 ////////////////////////////////
