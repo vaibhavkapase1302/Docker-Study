@@ -31,7 +31,8 @@ ENV FLASK_RUN_HOST=0.0.0.0
 
 EXPOSE 5000
 
-CMD ["flask", "run"]```
+CMD ["flask", "run"]
+```
 
 
 
@@ -60,7 +61,8 @@ WORKDIR /app/
 COPY --from=build /app/ .
  
 # Run java compiled code
-CMD ["java", "Hello"]```
+CMD ["java", "Hello"]
+```
 
 
 
@@ -78,4 +80,5 @@ ENV FLASK_RUN_HOST=0.0.0.0
 
 EXPOSE 5000
 
-CMD ["flask", "run"]```
+CMD ["flask", "run"]
+```
