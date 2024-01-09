@@ -1,4 +1,8 @@
 # Docker-Study
+
+Docker is written in the 'GO' language.
+Docker is a tool that performs OS-level virtualization, also known as containerization.
+
 ### Docker on Linux 
 
 ### Docker on Windows
