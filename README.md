@@ -120,3 +120,58 @@ CMD ["flask", "run"]
 
 
 ## Docker Compose
+
+**--build-context** ```--build-context stringArray Additional build contexts (e.g., name=path)```
+
+```sh
+docker build -t sample-site -f sample-site/docker/Dockerfile --build-context sample-site/ .
+```
+In this command, --build-context sample-site/ specifies that the build context should be the sample-site/ directory, which includes the html/ and docker/ directories. The . at the end of the command specifies the current directory as the build context for files that are not in the sample-site/ directory (like the config/ directory).
+
+It’s a common practice to keep the Dockerfile at the project root directory. The command, by default, expects the Dockerfile to be present there. All the files we want to include in the image should exist somewhere inside that context.
+
+General Dockerfile folder structurea:
+
+```
+project-root/
+│
+├── Dockerfile
+├── app/
+│   ├── src/
+│   │   └── (application source files)
+│   ├── static/
+│   │   └── (static files)
+│   └── templates/
+│       └── (HTML template files)
+│
+├── config/
+│   └── (configuration files)
+│
+├── tests/
+│   └── (test scripts and data)
+│
+└── README.md
+```
+
+If the structure is like this 
+
+```
+projects/
+├── <some other projects>...
+├── sample-site/
+│   ├── html/
+│   │   └── index.html
+│   └── docker/
+│       └── Dockerfile
+└── config/
+    └── nginx.conf
+```
+
+```sh
+docker build -t sample-site -f sample-site/docker/Dockerfile .
+```
+
+```sh
+def dockerfilePath = fileExists('Dockerfile') ? 'Dockerfile' : 'KYC/monitor/Dockerfile'
+sh "docker buildx build -t ${CONTAINER_REGISTRY_URL}/${ECR_REPO_NAME}:amd-${VERSION} -f ${dockerfilePath} ${buildContext} --build-arg PACKAGE_READ_TOKEN=${PACKAGE_READ_TOKEN} --build-arg BUILD_VERSION=${VERSION} --build-arg GIT_COMMIT=${scmVars.GIT_COMMIT[0..7]}"
+```
