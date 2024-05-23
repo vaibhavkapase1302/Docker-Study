@@ -246,3 +246,5 @@ docker build \
 
 https://kodekloud.com/blog/docker-build-args/
 
+https://stackoverflow.com/questions/42297387/docker-build-with-build-arg-with-multiple-arguments
+
