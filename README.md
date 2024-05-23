@@ -47,6 +47,16 @@ docker rm container_name  # OR  docker rm container_id
 
 **Image Management:**
 
+List all images:
+```sh
+docker images
+```
+
+Remove an image (replace "image_name" or "image_id"):
+```sh
+docker rmi image_name  # OR  docker rmi image_id
+```
+
 
 
 # Docker-Study
