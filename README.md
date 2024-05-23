@@ -175,3 +175,19 @@ docker build -t sample-site -f sample-site/docker/Dockerfile .
 def dockerfilePath = fileExists('Dockerfile') ? 'Dockerfile' : 'KYC/monitor/Dockerfile'
 sh "docker buildx build -t ${CONTAINER_REGISTRY_URL}/${ECR_REPO_NAME}:amd-${VERSION} -f ${dockerfilePath} ${buildContext} --build-arg PACKAGE_READ_TOKEN=${PACKAGE_READ_TOKEN} --build-arg BUILD_VERSION=${VERSION} --build-arg GIT_COMMIT=${scmVars.GIT_COMMIT[0..7]}"
 ```
+
+docker build with --build-arg with multiple arguments
+
+Use ```--build-arg``` with each argument.
+If you are passing two argument then add ```--build-arg``` with each argument like:
+
+```Dockerfile
+docker build \
+-t essearch/ess-elasticsearch:1.7.6 \
+--build-arg number_of_shards=5 \
+--build-arg number_of_replicas=2 \
+--no-cache .
+```
+
+https://kodekloud.com/blog/docker-build-args/
+
