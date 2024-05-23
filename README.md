@@ -1,8 +1,53 @@
 # Top Docker Commands
 
-```
+Check Docker version:
+```sh
 docker --version
 ```
+
+Pull an image (replace "image_name" with the actual image name):
+```sh
+docker pull image_name
+```
+
+Run a container in detached mode (background):
+```sh
+docker run -d image_name
+```
+
+Run a container with a custom name (replace "container_name" and "image_name"):
+```sh
+docker run --name container_name image_name
+```
+
+Run a container interactively (get a terminal inside):
+```sh
+docker run -it image_name
+```
+
+List all running containers:
+```sh
+docker ps
+```
+
+List all containers (running and stopped):
+```sh
+docker ps -a
+```
+
+Stop a running container (replace "container_name" or "container_id"):
+```sh
+docker stop container_name  # OR  docker stop container_id
+```
+
+Remove a stopped container (replace "container_name" or "container_id"):
+```sh
+docker rm container_name  # OR  docker rm container_id
+```
+
+**Image Management:**
+
+
 
 # Docker-Study
 
