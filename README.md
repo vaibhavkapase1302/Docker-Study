@@ -57,6 +57,12 @@ Remove an image (replace "image_name" or "image_id"):
 docker rmi image_name  # OR  docker rmi image_id
 ```
 
+**for deleting unused images**
+
+```sh
+system prune -a -f
+```
+removes unused images, not necessarily dangling images (untagged layers). If you want to remove dangling images as well, use the ```-a```
 
 
 # Docker-Study
