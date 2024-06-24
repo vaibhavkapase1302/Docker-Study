@@ -50,5 +50,8 @@ echo $USER
 sudo usermod -aG docker $USER
 ```
 
+How to delete a docker image?
+
+https://stackoverflow.com/questions/65895928/how-to-delete-a-docker-image
 
 
