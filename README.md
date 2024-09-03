@@ -256,6 +256,8 @@ https://stackoverflow.com/questions/42297387/docker-build-with-build-arg-with-mu
 
 # How to Reduce Docker Image Size
 
+https://github.com/vaibhavkapase1302/Docker-Study/blob/main/Books/How%20to%20reduce%20docker%20image%20size.pdf
+
 Reducing Docker image sizes is crucial for optimizing container deployment, enhancing scalability, and minimizing storage costs. Here's how you can effectively reduce Docker image sizes:
 
 ### 1. **Use Official Minimal Base Images:**
