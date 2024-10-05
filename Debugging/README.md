@@ -114,7 +114,7 @@ Certainly! Here’s a complete documentation that includes the problem statement
 
 ---
 
-#### Problem Statement: 02 Docker Entry Point Script Permission Issue
+### Problem Statement: 02 Docker Entry Point Script Permission Issue
 
 
 **Description**:
