@@ -116,6 +116,13 @@ Certainly! Here’s a complete documentation that includes the problem statement
 
 ### Problem Statement: 02 Docker Entry Point Script Permission Issue
 
+error file:///usr/local/bin/docker-entrypoint.sh:%2011:%20exec:%20.:%20Permission%20denied
+
+https://stackoverflow.com/questions/38882654/docker-entrypoint-running-bash-script-gets-permission-denied
+
+https://forums.docker.com/t/entry-point-script-not-executable-permission-denied/140836/3
+
+https://bobcares.com/blog/docker-entrypoint-file-permission-denied/
 
 **Description**:
 During the deployment of a Node.js application using Docker, an error was encountered when running the container. The specific error message was:
