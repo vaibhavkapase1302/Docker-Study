@@ -336,4 +336,9 @@ Reducing Docker image sizes is crucial for optimizing container deployment, enha
 
 By following these practices, you can significantly reduce Docker image sizes, improving both performance and security.
 
+### Difference between the 'COPY' and 'ADD' commands in a Dockerfile?
+
+https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile
+
+
 end!!
