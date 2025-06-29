@@ -349,5 +349,15 @@ https://spacelift.io/blog/docker-networking#docker-network-types
 
 https://docs.docker.com/reference/cli/docker/network/
 
+### Docker network types & use cases
+
+Docker supports six network types to manage container communication that implement core networking functionality:
+
+1. `bridge:` The default for standalone containers. It creates a private internal network on the host, and containers can communicate through it using IPs or container names.
+2. `host:` Removes network isolation by using the host’s network stack directly. This allows containers to share the host’s IP and ports, which is useful for performance or compatibility needs.
+3. `none:` Disables networking completely. Useful for security or manual configuration.
+4. `overlay:` Enables multi-host networking using Docker Swarm. It creates a distributed network across nodes, allowing containers on different hosts to communicate securely.
+5. `macvlan:` Assigns a MAC address to each container, making it appear as a physical device on the network. Used for scenarios requiring full network integration, such as legacy apps.
+6. `ipvlan:` Similar to macvlan but uses a different method for traffic handling. It’s more efficient for high-density environments but less flexible.
 
 end!!
