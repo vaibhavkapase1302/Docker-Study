@@ -181,8 +181,17 @@ COPY --from=build /app /app
 CMD ["flask", "run"]
 ```
 
+![Dockerfile-instructions](https://github.com/user-attachments/assets/c18160b9-04e8-43c3-bd33-2a49911315c3)
+
 ## Docker Volume
 
+The default Docker volume storage path:
+
+`/var/lib/docker/volumes`
+
+**Root Directory:**
+
+Docker stores all its data, including images, containers, volumes, and networks, within the `/var/lib/docker` directory. 
 
 ## Docker Compose
 
