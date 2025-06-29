@@ -341,4 +341,13 @@ By following these practices, you can significantly reduce Docker image sizes, i
 https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile
 
 
+## Docker Network
+
+https://docs.docker.com/engine/network/
+
+https://spacelift.io/blog/docker-networking#docker-network-types
+
+https://docs.docker.com/reference/cli/docker/network/
+
+
 end!!
