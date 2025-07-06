@@ -6,6 +6,7 @@ https://youtu.be/sK5i-N34im8?si=Db5HG2LRPgAggBsm
 
 - A hypervisor is software that pools computing resources—like processing, memory, and storage—and reallocates them among virtual machines (VMs). 
 - This technology makes virtualization possible, meaning you can create and run many VMs from a single physical machine.
+- e.g. Oracles VirtualBox
 
 ![image](https://github.com/user-attachments/assets/5c952809-afaf-46e2-bdf4-692c913ad455)
 
