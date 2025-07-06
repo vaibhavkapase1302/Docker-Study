@@ -4,9 +4,14 @@ https://youtu.be/sK5i-N34im8?si=Db5HG2LRPgAggBsm
 
 ## Hypervisor:
 
+- A hypervisor is software that pools computing resources—like processing, memory, and storage—and reallocates them among virtual machines (VMs). 
+- This technology makes virtualization possible, meaning you can create and run many VMs from a single physical machine.
+
 ![image](https://github.com/user-attachments/assets/5c952809-afaf-46e2-bdf4-692c913ad455)
 
 ![image](https://github.com/user-attachments/assets/1b0c44bf-a48c-4831-8343-28c3e6d23637)
+
+https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor
 
 ### VM vs Container
 
