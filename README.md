@@ -2,6 +2,10 @@ Cgroups, namespaces, and beyond: what are containers made from?
 
 https://youtu.be/sK5i-N34im8?si=Db5HG2LRPgAggBsm
 
+![image](https://github.com/user-attachments/assets/103d4a90-e594-4fd0-868b-230ea3fa0d12)
+
+![image](https://github.com/user-attachments/assets/b1fcd9a4-8712-4ee9-b455-5af6b3512b67)
+
 # Top Docker Commands
 
 Check Docker version:
