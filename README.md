@@ -377,6 +377,8 @@ https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-
 
 ## Docker Network
 
+<img width="3128" height="1786" alt="image" src="https://github.com/user-attachments/assets/d0eebf7a-c485-4c06-b193-6edaf74d7b36" />
+
 https://docs.docker.com/engine/network/
 
 https://spacelift.io/blog/docker-networking#docker-network-types
