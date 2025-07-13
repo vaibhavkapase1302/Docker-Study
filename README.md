@@ -24,6 +24,10 @@ https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor
 
 <img width="3178" height="1734" alt="image" src="https://github.com/user-attachments/assets/561e2662-1358-4612-8de9-5e59a5cb2d55" />
 
+<img width="2748" height="1730" alt="image" src="https://github.com/user-attachments/assets/198893ec-9f04-4f2c-9398-4d9de753b5c1" />
+
+<img width="3318" height="1528" alt="image" src="https://github.com/user-attachments/assets/339e9d08-0051-4f1e-ae70-294c9b070664" />
+
 
 # Top Docker Commands
 
