@@ -20,6 +20,11 @@ https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor
 
 ![image](https://github.com/user-attachments/assets/b1fcd9a4-8712-4ee9-b455-5af6b3512b67)
 
+## Docker Arch
+
+<img width="3178" height="1734" alt="image" src="https://github.com/user-attachments/assets/561e2662-1358-4612-8de9-5e59a5cb2d55" />
+
+
 # Top Docker Commands
 
 Check Docker version:
@@ -202,6 +207,8 @@ CMD ["flask", "run"]
 ![Dockerfile-instructions](https://github.com/user-attachments/assets/c18160b9-04e8-43c3-bd33-2a49911315c3)
 
 ## Docker Volume
+
+<img width="2460" height="1356" alt="image" src="https://github.com/user-attachments/assets/ef151cd1-136a-4cf3-9fef-20bc1635896a" />
 
 The default Docker volume storage path:
 
