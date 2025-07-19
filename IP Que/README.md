@@ -20,7 +20,9 @@
 18. How can you isolate networking between containers?
 19. What steps would you take to secure your containers?What is a multi-stage build and why is it used?
 20. How do you create a Docker network?
-  A:Docker networks can be created using the docker network create command, followed by a name for the network and optional configuration parameters. For example, docker      network create mynetwork.
+  
+    A:Docker networks can be created using the docker network create command, followed by a name for the network and optional configuration parameters. For example, docker      network create mynetwork.
+
 21. hh
 
 
