@@ -15,6 +15,8 @@
 13. What is the difference between COPY and ADD?
 14. How many containers can we run in Docker exactly?
 15. What happens to the data inside a container when you delete the running container?
+16. What is the structure of your Dockerfile? How do you write one?
+17. What is WORKDIR in a Dockerfile? What does it do?
 
 Scenarios:
 
