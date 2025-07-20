@@ -30,7 +30,6 @@
 22. How does Docker ensure application isolation?
 
 > Docker ensures application isolation by leveraging key Linux kernel features:
-
 **Namespaces** isolate system resources like processes (PID), network interfaces, and file systems, giving each container its own environment.
 **Control Groups (cgroups)** manage and limit resource usage such as CPU, memory, and disk I/O, preventing any one container from monopolizing system resources.
 **Union File Systems** (e.g., AUFS, OverlayFS) allow efficient, layered image creation with support for versioning and reuse, keeping containers lightweight.
