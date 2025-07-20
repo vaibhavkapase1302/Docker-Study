@@ -381,6 +381,10 @@ https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-
 
 ## Docker Network
 
+Docker networking enables **communication** between containers, between containers and the host, and sometimes between containers across different Docker hosts.
+
+Containers are isolated by default but can be connected using various network drivers.
+
 <img width="3128" height="1786" alt="image" src="https://github.com/user-attachments/assets/d0eebf7a-c485-4c06-b193-6edaf74d7b36" />
 
 https://docs.docker.com/engine/network/
@@ -388,6 +392,7 @@ https://docs.docker.com/engine/network/
 https://spacelift.io/blog/docker-networking#docker-network-types
 
 https://docs.docker.com/reference/cli/docker/network/
+
 
 ### Docker network types & use cases
 
@@ -399,5 +404,56 @@ Docker supports six network types to manage container communication that impleme
 4. `overlay:` Enables multi-host networking using Docker Swarm. It creates a distributed network across nodes, allowing containers on different hosts to communicate securely.
 5. `macvlan:` Assigns a MAC address to each container, making it appear as a physical device on the network. Used for scenarios requiring full network integration, such as legacy apps.
 6. `ipvlan:` Similar to macvlan but uses a different method for traffic handling. It’s more efficient for high-density environments but less flexible.
+
+
+#### 5. Basic Commands
+
+* List networks:
+
+  ```bash
+  docker network ls
+  ```
+
+* Inspect a network:
+
+  ```bash
+  docker network inspect <network-name>
+  ```
+
+* Create a network:
+
+  ```bash
+  docker network create --driver bridge my_bridge_network
+  ```
+
+* Connect a container to a network:
+
+  ```bash
+  docker network connect <network-name> <container-name>
+  ```
+
+* Disconnect a container from a network:
+
+  ```bash
+  docker network disconnect <network-name> <container-name>
+  ```
+
+#### 6. Example: Run two containers on a user-defined bridge network
+
+```bash
+docker network create my_net
+
+docker run -dit --name container1 --network my_net alpine sh
+
+docker run -dit --name container2 --network my_net alpine sh
+```
+
+Inside container1, you can ping container2 by name:
+
+```bash
+docker exec container1 ping container2
+```
+
+---
 
 end!!
