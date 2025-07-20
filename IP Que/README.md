@@ -23,7 +23,20 @@
   
     A:Docker networks can be created using the docker network create command, followed by a name for the network and optional configuration parameters. For example, docker      network create mynetwork.
 
-21. hh
+21. What Happens When a Running Docker Container is Stopped?
+
+> When a Docker container is stopped, Docker first sends a `SIGTERM` signal to the container’s main process (PID 1) to allow **graceful shutdown and cleanup**; if the process doesn’t stop within the default _10-second_ grace period, Docker sends a `SIGKILL` signal to forcefully terminate it — transitioning the container state from **Running** to **Stopped**; this is done using the command `docker stop <container-id>`.
+
+22. How does Docker ensure application isolation?
+
+> Docker ensures application isolation by leveraging key Linux kernel features:
+
+**Namespaces** isolate system resources like processes (PID), network interfaces, and file systems, giving each container its own environment.
+**Control Groups (cgroups)** manage and limit resource usage such as CPU, memory, and disk I/O, preventing any one container from monopolizing system resources.
+**Union File Systems** (e.g., AUFS, OverlayFS) allow efficient, layered image creation with support for versioning and reuse, keeping containers lightweight.
+**The container runtime** (e.g., containerd) manages the container lifecycle and enforces isolation at the OS level.
+
+Together, these components ensure each container runs securely and independently on the same host.
 
 
 Scenarios:
