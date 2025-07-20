@@ -131,6 +131,100 @@ When `docker run` is executed, Docker performs:
 
 ## Docker network:-
 
+
+#### ❓1. What is Docker's default network driver?
+
+**Answer:**
+The default driver is **bridge**. It creates a private internal network on the host.
+
+
+#### ❓2. How do containers communicate with each other on the same network?
+
+**Answer:**
+If connected to the **same user-defined bridge or overlay network**, they can communicate via **container names** (DNS) or IP addresses.
+
+
+#### ❓3. What is the difference between bridge and host network?
+
+**Answer:**
+
+* **Bridge:** Containers get isolated network stacks and private IPs.
+* **Host:** Containers share the host's network stack (no isolation).
+
+
+#### ❓4. How can you expose a container's service to the outside world?
+
+**Answer:**
+Use the `-p` or `--publish` flag to map container ports to host ports, e.g. `-p 8080:80`.
+
+
+#### ❓5. How can containers on different hosts communicate?
+
+**Answer:**
+By using an **overlay network**, typically in **Docker Swarm** mode.
+
+
+#### ❓6. What command lists all Docker networks?
+
+**Answer:**
+
+```bash
+docker network ls
+```
+
+
+#### ❓7. What is the use of `docker network inspect`?
+
+**Answer:**
+It shows detailed info about a network, including connected containers and IP ranges.
+
+
+#### ❓8. What happens when you connect a container to multiple networks?
+
+**Answer:**
+The container gets a **separate IP** for each network. The first network is its **default gateway**.
+
+
+#### ❓9. What is `host.docker.internal`?
+
+**Answer:**
+A special DNS name for accessing the **host machine from inside a container** (works on Docker Desktop).
+
+
+#### ❓10. Can two containers on the default bridge network talk by name?
+
+**Answer:**
+**No.** DNS-based name resolution only works on **user-defined bridge networks**.
+
+
+#### ❓11. How do you create a user-defined bridge network?
+
+**Answer:**
+
+```bash
+docker network create my_net
+```
+
+
+#### ❓12. How does Docker isolate container networks?
+
+**Answer:**
+Using **Linux network namespaces** and **veth pairs** connected to bridges.
+
+
+#### ❓13. What is a veth pair?
+
+**Answer:**
+A virtual network cable with two ends: one in the **host** namespace, one in the **container**.
+
+
+#### ❓14. What tools help debug container network issues?
+
+**Answer:**
+
+* `ping`, `curl`, `nslookup`, `netstat`, `ip a`, `docker inspect`
+* Also: `iptables`, `nsenter`
+
 ---
 
 ## Scenarios:
