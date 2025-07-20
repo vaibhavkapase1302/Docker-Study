@@ -541,6 +541,12 @@ Inside container1, you can ping container2 by name:
 docker exec container1 ping container2
 ```
 
+**Port Mapping**
+
+- Host ports are mapped to container ports to allow access from outside the host.
+- Example: docker run -p 8080:80 nginx maps host port 8080 to container port 80.
+- Port mapping uses NAT and iptables to forward traffic.
+
 ---
 
 end!!
