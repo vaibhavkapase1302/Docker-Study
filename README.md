@@ -613,6 +613,157 @@ Docker supports six network types to manage container communication that impleme
 | **none**     | ❌           | ❌              | ❌          | Debugging, sandboxing            |
 
 
+#### Container Communication: 
+
+
+##### 🔀 1. **Container-to-Container Communication** (Same Network)
+
+```
+      User-defined Bridge Network (with DNS)
+      --------------------------------------
++------------------+          +------------------+
+| Container A       |◄──────▶ | Container B       |
+| Name: web         |         | Name: db          |
+| IP: 172.18.0.2    |         | IP: 172.18.0.3    |
++------------------+          +------------------+
+        |                            |
+        ▼ DNS Resolution via Docker |
+       curl http://db:3306          |
+```
+
+📌 **Note:** Works only in **user-defined bridge** or **overlay** networks, not default `bridge`.
+
+
+##### 🌐 2. **Container-to-Host Communication**
+
+```
++------------------+
+| Container        |
+| eth0: 172.x.x.x  |
++--------▲---------+
+         |
+         ▼
+ Use `host.docker.internal`  (Docker Desktop)
+     OR use host IP (Linux)
+```
+
+📌 On Linux, container must access host via **host IP**, not `localhost`.
+
+
+##### 🌎 3. **Internet Access from Containers (NAT)**
+
+```
++------------------+         +------------------------+
+| Container        |         | Docker Host (iptables) |
+| 172.17.0.2       |◄───────▶| NAT (MASQUERADE)       |
+| Outbound traffic |         | Converts → Host IP     |
++------------------+         +------------------------+
+                                |
+                                ▼
+                             Internet
+```
+
+📌 Enabled by default using Docker-managed **iptables** rules.
+
+
+#### 🔁 4. **Port Mapping / Forwarding**
+
+```
++------------------------+
+|  Host: localhost:8080 |◄─── You access
++----------▲-------------+
+           |
+    iptables DNAT rule
+           |
++----------▼-------------+
+| Container: port 80     |
+| (e.g., Nginx)          |
++------------------------+
+
+Command:
+docker run -p 8080:80 nginx
+```
+
+📌 Host forwards traffic to container's internal port.
+
+
+#### 🔄 5. **Hairpin NAT / Loopback Access**
+
+```
++--------------------------+
+| Container (API Server)   |
+| Exposes: 8080->80        |
++-----------▲--------------+
+            |
+     curl http://hostIP:8080
+            |
+            ▼
+  iptables loopback rule redirects
+```
+
+📌 Enables a container to access its **own** service via host-mapped port (e.g., self-call to APIs).
+
+
+##### 🛰️ 6. **Connecting Container to Multiple Networks**
+
+```
++------------------+
+| Container A       |
+| eth0 → bridge1    |
+| eth1 → bridge2    |
++------------------+
+```
+
+Command:
+
+```bash
+docker network connect bridge2 containerA
+```
+
+📌 Use case: API container talks to both DB and Web network separately.
+
+
+##### 🌉 7. **Docker Gateway Bridge in Swarm (`docker_gwbridge`)**
+
+```
+            +--------------------------+
+            | Overlay Network (Swarm)  |
+            | Service traffic routing  |
+            +------------▲-------------+
+                         |
+           Internal NAT & bridge routing
+                         |
+            +------------▼-------------+
+            | docker_gwbridge (host)   |
+            | For outside ↔ service    |
+            +--------------------------+
+```
+
+📌 Enables external access to Swarm containers via the host.
+
+
+##### 📡 8. **Service Discovery in Docker Swarm**
+
+```
++-----------------------+
+| Service: web          |
+| VIP: 10.0.0.2         |
++----------▲------------+
+           |
+     Internal DNS (VIP)
+           |
++----------▼------------+
+| Task 1 (web.1)        |
+| Task 2 (web.2)        |
+| Task 3 (web.3)        |
++-----------------------+
+
+Docker load-balances between tasks automatically via **IPVS**
+```
+
+📌 DNS-based load balancing for services across replicas.
+
+
 #### 5. Basic Commands
 
 * List networks:
