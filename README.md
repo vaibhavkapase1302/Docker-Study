@@ -474,6 +474,42 @@ Host Network Namespace
     └── Routing & iptables for NAT & port forwarding
 ```
 
+#### 🔄 Docker Networking – Visual Summary (Conceptual Flowchart)
+
+```
++---------------------+
+|     Docker Host     |
+|                     |
+|  +---------------+  |
+|  | docker0 (bridge)|◄────────┐  Default bridge network
+|  +---------------+  |         |
+|         ▲            |         |
+|         |            |         |
+|  +------+-----+   +--+------+  |
+|  | veth-host1 |   | veth-host2|  Virtual Ethernet pairs
+|  +------+-----+   +--+------+  |
+|         |              |       |
++---------|--------------|-------+
+          |              |
+          ▼              ▼
++----------------+   +----------------+
+| Container 1    |   | Container 2    |
+|  Network NS    |   |  Network NS    |
+|  eth0 → 172.X  |   |  eth0 → 172.X  |  Each has its own IP
++----------------+   +----------------+
+
+```
+
+
+##### 🔍 Key Components:
+
+* **docker0 (bridge):** Virtual switch that connects containers on the same bridge network.
+* **veth pair:** Acts like a virtual cable between host and container namespaces.
+* **eth0 inside container:** The container’s network interface.
+* **Namespace isolation:** Each container has its own isolated networking stack.
+* **IP Assignment:** Each container gets a private IP from the Docker bridge subnet.
+
+
 ##### Bonus: Why is this Important?
 
 * This isolation and networking model is what makes containers lightweight yet securely isolated.
@@ -491,6 +527,90 @@ Docker supports six network types to manage container communication that impleme
 4. `overlay:` Enables multi-host networking using Docker Swarm. It creates a distributed network across nodes, allowing containers on different hosts to communicate securely.
 5. `macvlan:` Assigns a MAC address to each container, making it appear as a physical device on the network. Used for scenarios requiring full network integration, such as legacy apps.
 6. `ipvlan:` Similar to macvlan but uses a different method for traffic handling. It’s more efficient for high-density environments but less flexible.
+
+
+#### 📊 Docker Network Types – Conceptual Flowchart
+
+```
+                                      +----------------------+
+                                      |   Docker Host        |
+                                      |                      |
+                                      |  +----------------+  |
+                                      |  | docker0 bridge |◄───────────────────────+
+                                      |  +----------------+                      |
+                                      |        ▲                                 |
+       BRIDGE NETWORK                 |        | (veth pair)                     |
+       ------------------------       |  +-----+-----+       +-----+-----+       |
++------------------+           +------+ veth-host1 |       | veth-host2 |       |
+| Container A       |           |     +-----+-----+       +-----+-----+       |
+|  IP: 172.17.x.x   |◄────eth0──┘           |                     |             |
++------------------+                       ▼                     ▼             |
+                                      +---------+           +---------+        |
+                                      | eth0-A  |           | eth0-B  |        |
+                                      | in A    |           | in B    |        |
+                                      +---------+           +---------+        |
+                                      Bridge: Can talk if on same net ---------+
+
+```
+
+```
+         HOST NETWORK (shares host net stack)
+         ----------------------------
++------------------+         +-----------------------+
+| Container C       |──────▶ | Shares host's IP      |
+| Uses host network |         | No isolation (perf)   |
++------------------+         +-----------------------+
+  No separate IP or interface
+
+```
+
+```
+         OVERLAY NETWORK (multi-host)
+         ----------------------------
++------------------+           +------------------+
+| Host 1           |           | Host 2           |
+| +------------+   |           | +------------+   |
+| | Container D |   |  ◀────▶  | | Container E |   |
+| | IP: 10.0.0.2 |◄─┘ Overlay  | | IP: 10.0.0.3 |   |
+| +------------+   |   VXLAN   | +------------+   |
++------------------+           +------------------+
+   Needs Docker Swarm (or plugins)
+
+```
+
+```
+         MACVLAN NETWORK (direct LAN access)
+         ----------------------------
++------------------+           +------------------+
+| Container F       |◄────────▶| LAN Switch       |
+| IP: 192.168.1.100 |           | Real network     |
+| MAC: unique       |           | Direct traffic   |
++------------------+           +------------------+
+  Appears as physical device on LAN
+
+```
+
+```
+         NONE NETWORK (no networking)
+         ----------------------------
++------------------+
+| Container G       |
+| No external access|
+| Only loopback     |
++------------------+
+  For max isolation / testing
+```
+
+
+##### 📌 Summary:
+
+| Network Type | Isolated IP | Host Access    | Multi-Host | Use Case                         |
+| ------------ | ----------- | -------------- | ---------- | -------------------------------- |
+| **bridge**   | ✅           | Via ports      | ❌          | Default, simple setups           |
+| **host**     | ❌ (shares)  | Full           | ❌          | High-performance, same-host apps |
+| **overlay**  | ✅           | Via ingress    | ✅          | Docker Swarm multi-host          |
+| **macvlan**  | ✅ (LAN IP)  | ❌ (by default) | Depends    | LAN-level access, legacy systems |
+| **none**     | ❌           | ❌              | ❌          | Debugging, sandboxing            |
 
 
 #### 5. Basic Commands
