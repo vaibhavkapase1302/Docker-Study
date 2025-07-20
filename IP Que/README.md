@@ -60,6 +60,11 @@ Together, these components ensure each container runs securely and independently
            [Removed] [Removed]
 ```
 
+23.  What is the difference between Docker Engine and Docker Daemon?
+> Answer:
+**Docker Engine** is the overall containerization platform including tools and components.
+**Docker Daemon** (dockerd) is the background service running on the host that manages images, containers, networks, and storage.
+
 ---
 
 ## Q&A
